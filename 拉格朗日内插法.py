@@ -17,7 +17,7 @@ def interpolation(data_x, data_fx, predict_x):
     data_x_xj = (data_x - predict_x) + np.zeros_like(data_x.T)
     #print(bool_mat)
     #print(np.zeros_like(predict_x) == 0)
-    bool_mat = bool_mat * (np.zeros_like(predict_x) == 0)
+    bool_mat = bool_mat * np.full(predict_x.shape, True, dtype = bool)
     #print(bool_mat)
     data_x_xj[bool_mat] = 1
     l = (data_x_xj / data_x_jk)

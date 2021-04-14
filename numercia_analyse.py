@@ -8,7 +8,7 @@ Created on Wed Apr  7 18:12:06 2021
 
 import numpy as np
 #from numba import vectorize
-import symmpy as sy
+import sympy as sy
 
 
 
@@ -81,7 +81,7 @@ def solve_one_iteration(fx, x0, e = 1e-5):
 def newton_iteration(fx, x, x0, e1, e2, N):
     #牛顿迭代法
     #fx为sympy表达式
-    fx_ = fx.diff(fx, x)
+    fx_ = fx.diff(x)
     for n in range(N + 1):
         result = fx.evalf(subs = {x : x0})
         result_ = fx_.evalf(subs = {x : x0})
@@ -116,3 +116,5 @@ def newton_iteration(fx, x, x0, e1, e2, N):
 if __name__ == '__main__':
     x = sy.Symbol('x')
     fx = sy.exp(-x) + sy.sin(x)
+    result = newton_iteration(fx, x, 0.6, 1e-8, 1e-8, 100000)
+    print(result)
